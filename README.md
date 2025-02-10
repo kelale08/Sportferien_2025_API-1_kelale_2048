@@ -8,10 +8,10 @@ Das Ziel dieses Projekts ist es, während der Sportferienzeit ein **2048**-Spiel
 ### Meilenstein 1: Grundstruktur des Projekts
 - **Beschreibung**: Im ersten Meilenstein wird die Grundstruktur des Spiels erstellt, einschließlich der Spiel-Logik und einer einfachen Benutzeroberfläche.
 - **Aufgaben**:
-  - Erstellung der Grundstruktur )
+  - Erstellung der Grundstruktur 
   - Einfache Benutzeroberfläche für das Spiel erstellen
   - Implementierung grundlegender Eingabemethoden
-- **Probieren der Fertigstellung bis**: 10. Februar 2025
+- **Fertigstellung bis**: 12. Februar 2025
 
 ### Meilenstein 2: Implementierung der fortgeschrittenen Features
 - **Beschreibung**: In diesem Meilenstein werden fortgeschrittene Features wie die Punktzahl-Anzeige und das "Game Over"-System hinzugefügt.
@@ -31,12 +31,7 @@ Das Ziel dieses Projekts ist es, während der Sportferienzeit ein **2048**-Spiel
   - Endgültige Optimierungen und Bereitstellung des Spiels
 - **Fertigstellung bis**: 19. Februar 2025
 
-### Optionales Ziel 1: Verschönerung der Benutzeroberfläche
-- **Beschreibung**: Dieses Ziel umfasst die Verbesserung der Benutzeroberfläche des Spiels, um eine ansprechendere Benutzererfahrung zu bieten.
-- **Fertigstellung bis**: 19. Februar 2025
 
-
-
-## Team
+## Autoren und Team
 - **Projektleiter**: Alessandro Keller
 
