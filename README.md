@@ -20,7 +20,7 @@ Das Ziel dieses Projekts ist es, während der Sportferienzeit ein **2048**-Spiel
   - Game Over-Logik und Restart-Option
   - Design und Benutzeroberfläche verfeinern
   - Erweiterung der Spiel-Logik für zusätzliche Features
-- **Fertigstellung bis**: 14. Februar 2025
+- **Fertigstellung bis**: 17. Februar 2025
 
 ### Meilenstein 3: Fehlerbehebung, Tests und Dokumentation
 - **Beschreibung**: Im letzten Meilenstein wird das Projekt gründlich getestet, Fehler behoben und die finale Dokumentation erstellt.
