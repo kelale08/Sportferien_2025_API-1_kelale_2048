@@ -1,14 +1,14 @@
 /*
     Main JAVA
-    Autor: Alessandro Keller
-    Datum: 2025-15-02 09:32:17
-    Kurze Beschreibung:
-    Diese Datei enthält den Einstiegspunkt für das 2048-Spiel. Sie startet
-    die Anwendung und initialisiert die Benutzeroberfläche und Spiellogik.
-    Quellenverzeichnis:
-
+    Author: Alessandro Keller
+    Short Description:
+    This file contains the entry point for the 2048 game. It launches
+    the application and initializes the user interface and game logic.
 */
 
+// This file was made with the help of AI, especially the complicated logics
+
+// Creates and displays the game window on the event dispatch thread
 import javax.swing.SwingUtilities;
 
 public class Main {

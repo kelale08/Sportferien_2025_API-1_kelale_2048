@@ -1,20 +1,18 @@
 /*
     Tile JAVA
-    Autor: Alessandro Keller
-    Datum: 2025-15-02 09:32:17
-    Kurze Beschreibung:
-    Diese Datei repräsentiert eine einzelne Kachel im 2048-Spiel. Jede
-    Kachel hat einen Wert und enthält Methoden zur Verwaltung und Darstellung
-    dieses Wertes.
-    Quellenverzeichnis:
-
+    Author: Alessandro Keller
+    Short Description:
+    This file represents a single tile in the 2048 game. Each tile has a value
+    and includes methods for managing and displaying this value.
 */
+
+// This file was made with the help of AI, especially the complicated logics
 
 public class Tile {
     private int value;
 
     public Tile() {
-        this.value = 0; // Standardwert ist 0 (leere Kachel)
+        this.value = 0;  // Empty tile has value 0
     }
 
     public int getValue() {

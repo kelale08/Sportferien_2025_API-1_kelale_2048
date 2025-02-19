@@ -1,9 +1,21 @@
+/*
+    Board JAVA
+    Author: Alessandro Keller
+    Short Description:
+    This file contains the game logic of the 2048 game. It manages the game board, tile movements,
+    adding random tiles, merging tiles, and checking for game over conditions.
+
+*/
+
+// This file was made with the help of AI, especially the complicated logics
+
 import java.util.Random;
 
 public class Board {
     private Tile[][] tiles;
     private Random random;
 
+    // Initialize a 4x4 game board with empty tiles
     public Board() {
         tiles = new Tile[4][4];
         random = new Random();
@@ -19,6 +31,7 @@ public class Board {
         return tiles;
     }
 
+    // Add a new tile (value 2 or 4) to a random empty position on the board
     public void addRandomTile() {
         int row, col;
         do {
@@ -28,6 +41,7 @@ public class Board {
         tiles[row][col].setValue(random.nextInt(2) == 0 ? 2 : 4);
     }
 
+    // Clear the board and add two random tiles to start a new game
     public void resetGame() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -54,6 +68,7 @@ public class Board {
         return move(0, 1);
     }
 
+    // Core movement logic that handles both sliding and merging tiles in any direction
     private boolean move(int rowDirection, int colDirection) {
         boolean moved = false;
         int start = (rowDirection == 1 || colDirection == 1) ? 3 : 0;
@@ -73,6 +88,7 @@ public class Board {
         return moved;
     }
 
+    // Move a single tile as far as possible
     private boolean moveTile(int row, int col, int rowDirection, int colDirection) {
         int newRow = row;
         int newCol = col;
@@ -117,6 +133,7 @@ public class Board {
         return tiles[row][col];
     }
 
+    // Check if no more moves are possible
     public boolean isGameOver() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -133,7 +150,4 @@ public class Board {
         }
         return true;
     }
-
-
 }
-

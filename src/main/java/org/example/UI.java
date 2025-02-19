@@ -1,3 +1,16 @@
+/*
+    UI JAVA
+    Author: Alessandro Keller
+    Short Description:
+    This class provides the graphical user interface for the 2048 game. It manages displaying the game,
+    including the game board, score, new game buttons, and tile animations.
+    References:
+*/
+
+// This file was made with the help of AI, especially the complicated logics
+
+
+// Imports all the librarys
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -5,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UI extends JFrame {
+
 
     private Game game;
     private JPanel boardPanel;
@@ -28,12 +42,12 @@ public class UI extends JFrame {
     private static final int ANIMATION_FRAME_TIME = 60 / ANIMATION_FPS;
     private Map<Point, AnimatedTile> animatedTiles = new HashMap<>();
 
-    public UI(Game game) {
+    public UI(Game game) { //Sets up the main game window with title, score displays, and layout
         this.game = game;
         setTitle("2048");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        getContentPane().setBackground(new Color(255, 248, 239)); // Dark background
+        getContentPane().setBackground(new Color(255, 248, 239));
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(255, 251, 240));
@@ -58,20 +72,17 @@ public class UI extends JFrame {
         headerPanel.add(titleLabel, BorderLayout.WEST);
         headerPanel.add(scorePanel, BorderLayout.EAST);
 
-        subtitleLabel = new JLabel("dont know how it works");
-        subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        subtitleLabel.setForeground(new Color(125, 103, 41));
 
+        // Creates and configures the New Game button and game board panel
         newGameButton = new JButton("New Game");
         newGameButton.setFont(new Font("Arial", Font.BOLD, 16));
         newGameButton.setBackground(new Color(250, 243, 217));
-        newGameButton.setForeground(Color.WHITE);
+        newGameButton.setForeground(Color.BLACK);
         newGameButton.setFocusPainted(false);
         newGameButton.addActionListener(e -> resetGame());
 
         JPanel subHeaderPanel = new JPanel(new BorderLayout());
         subHeaderPanel.setOpaque(false);
-        subHeaderPanel.add(subtitleLabel, BorderLayout.WEST);
         subHeaderPanel.add(newGameButton, BorderLayout.EAST);
 
         boardPanel = new JPanel() {
@@ -93,7 +104,7 @@ public class UI extends JFrame {
 
         createGameOverDialog();
 
-        addKeyListener(new KeyAdapter() {
+        addKeyListener(new KeyAdapter() { // adds a keylistener that responds to key press events
             @Override
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
@@ -119,6 +130,7 @@ public class UI extends JFrame {
         updateUI();
     }
 
+    // Creates a styled score display label with title and initial value of 0
     private JLabel createScoreLabel(String title) {
         JLabel label = new JLabel("<html><center>" + title + "<br>0</center></html>");
         label.setFont(new Font("Arial", Font.BOLD, 14));
@@ -194,6 +206,7 @@ public class UI extends JFrame {
         boardPanel.repaint();
     }
 
+    // sets the color for every tile
     private Color getBackgroundColor(int value) {
         switch (value) {
             case 2: return new Color(238, 228, 218);
@@ -237,7 +250,7 @@ public class UI extends JFrame {
         // Create a list of all tiles that are moving
         Map<Point, Point> tileMovement = new HashMap<>();
 
-        game.move(direction);  // Perform the move
+        game.move(direction);
 
         // Create animated tiles (for all moves, not just merges)
         animatedTiles.clear();
@@ -362,10 +375,10 @@ public class UI extends JFrame {
     }
 
     private void resetGame() {
-        game = new Game();  // Erstelle eine komplett neue Game-Instanz
+        game = new Game();  // Create a completely new game instance
         updateUI();
         boardPanel.repaint();
-        this.requestFocus();  // Stelle sicher, dass das UI-Fenster den Fokus hat
+        this.requestFocus();  // Make sure the UI window has focus
     }
 
     private class AnimatedTile {
@@ -398,4 +411,4 @@ public class UI extends JFrame {
         public int getCurrentY() { return (int) currentY; }
     }
 }
-//test
+
