@@ -221,7 +221,7 @@ public class UI extends JFrame {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastMoveTime < MOVE_DELAY) return;
 
-        System.out.println("Attempting move: " + direction);  // Debug-Ausgabe
+
 
         isAnimating = true;
         lastMoveTime = currentTime;

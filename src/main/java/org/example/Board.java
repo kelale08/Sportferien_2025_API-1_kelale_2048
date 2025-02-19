@@ -39,90 +39,77 @@ public class Board {
     }
 
     public boolean moveUp() {
-        boolean moved = false;
-        for (int col = 0; col < 4; col++) {
-            moved |= moveColumn(col, -1);
-        }
-        return moved;
+        return move(-1, 0);
     }
 
     public boolean moveDown() {
-        boolean moved = false;
-        for (int col = 0; col < 4; col++) {
-            moved |= moveColumn(col, 1);
-        }
-        return moved;
+        return move(1, 0);
     }
 
     public boolean moveLeft() {
-        boolean moved = false;
-        for (int row = 0; row < 4; row++) {
-            moved |= moveRow(row, -1);
-        }
-        return moved;
+        return move(0, -1);
     }
 
     public boolean moveRight() {
+        return move(0, 1);
+    }
+
+    private boolean move(int rowDirection, int colDirection) {
         boolean moved = false;
-        for (int row = 0; row < 4; row++) {
-            moved |= moveRow(row, 1);
+        int start = (rowDirection == 1 || colDirection == 1) ? 3 : 0;
+        int end = (rowDirection == 1 || colDirection == 1) ? -1 : 4;
+        int step = (rowDirection == 1 || colDirection == 1) ? -1 : 1;
+
+        for (int i = start; i != end; i += step) {
+            for (int j = start; j != end; j += step) {
+                int row = rowDirection == 0 ? i : j;
+                int col = colDirection == 0 ? i : j;
+                if (tiles[row][col].getValue() != 0) {
+                    moved |= moveTile(row, col, rowDirection, colDirection);
+                }
+            }
         }
+
         return moved;
     }
 
-    private boolean moveColumn(int col, int direction) {
+    private boolean moveTile(int row, int col, int rowDirection, int colDirection) {
+        int newRow = row;
+        int newCol = col;
+        boolean merged = false;
         boolean moved = false;
-        int start = direction == -1 ? 0 : 3;
-        int end = direction == -1 ? 4 : -1;
-        int step = direction == -1 ? 1 : -1;
 
-        for (int i = start; i != end; i += step) {
-            int nextRow = i + direction;
-            while (nextRow >= 0 && nextRow < 4) {
-                if (tiles[i][col].getValue() == 0) break;
-                if (tiles[nextRow][col].getValue() == 0) {
-                    tiles[nextRow][col].setValue(tiles[i][col].getValue());
-                    tiles[i][col].setValue(0);
-                    moved = true;
-                } else if (tiles[nextRow][col].getValue() == tiles[i][col].getValue()) {
-                    tiles[nextRow][col].setValue(tiles[nextRow][col].getValue() * 2);
-                    tiles[i][col].setValue(0);
-                    moved = true;
-                    break;
-                } else {
-                    break;
-                }
-                nextRow += direction;
+        while (true) {
+            int nextRow = newRow + rowDirection;
+            int nextCol = newCol + colDirection;
+
+            if (nextRow < 0 || nextRow >= 4 || nextCol < 0 || nextCol >= 4) {
+                break;
+            }
+
+            if (tiles[nextRow][nextCol].getValue() == 0) {
+                newRow = nextRow;
+                newCol = nextCol;
+                moved = true;
+            } else if (!merged && tiles[nextRow][nextCol].getValue() == tiles[row][col].getValue()) {
+                newRow = nextRow;
+                newCol = nextCol;
+                merged = true;
+                moved = true;
+            } else {
+                break;
             }
         }
-        return moved;
-    }
 
-    private boolean moveRow(int row, int direction) {
-        boolean moved = false;
-        int start = direction == -1 ? 0 : 3;
-        int end = direction == -1 ? 4 : -1;
-        int step = direction == -1 ? 1 : -1;
-
-        for (int i = start; i != end; i += step) {
-            int nextCol = i + direction;
-            while (nextCol >= 0 && nextCol < 4) {
-                if (tiles[row][i].getValue() == 0) break;
-                if (tiles[row][nextCol].getValue() == 0) {
-                    tiles[row][nextCol].setValue(tiles[row][i].getValue());
-                    tiles[row][i].setValue(0);
-                    moved = true;
-                } else if (tiles[row][nextCol].getValue() == tiles[row][i].getValue()) {
-                    tiles[row][nextCol].setValue(tiles[row][nextCol].getValue() * 2);
-                    tiles[row][i].setValue(0);
-                    moved = true;
-                    break;
-                } else {
-                    break;
-                }
-                nextCol += direction;
+        if (moved) {
+            if (merged) {
+                tiles[newRow][newCol].setValue(tiles[row][col].getValue() * 2);
+            } else {
+                tiles[newRow][newCol].setValue(tiles[row][col].getValue());
             }
+            tiles[row][col].setValue(0);
         }
+
         return moved;
     }
 
